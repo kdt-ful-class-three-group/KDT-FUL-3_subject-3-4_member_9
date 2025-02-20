@@ -9,22 +9,17 @@ function closeEditModal() {
   document.getElementById("editModal").style.display = "none";
 }
 
-function readModal(text) {
-  const modal = document.getElementById("readModal");
-  const modalContent = modal.querySelector("div");
-  modalContent.innerHTML = `<p>${text}</p>`;
-
-  modal.style.display = "block";
-}
-
-function closeReadModal() {
-  document.getElementById("readModal").style.display = "none";
+function readModal(title, content) {
+  document.getElementById("modal_title").innerText = title;
+  document.getElementById("modal_content").innerText = content;
+  document.getElementById("readWriteModal").style.display = "block";
 }
 
 function writeModal() {
   document.getElementById("writeModal").style.display = "block";
 }
 
-function closeWriteModal() {
-  document.getElementById("writeModal").style.display = "none";
+// 모달 닫기
+function closeModal() {
+  document.getElementById("readWriteModal").style.display = "none";
 }

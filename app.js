@@ -1,5 +1,6 @@
 const http = require("http");
 const fs = require("fs");
+const qs = require("querystring");
 
 const server = http.createServer((req, res) => {
   const url = req.url;
@@ -52,11 +53,11 @@ const server = http.createServer((req, res) => {
 
       return;
     }
-
-    let PORT = 8000;
-
-    server.listen(PORT, function () {
-      console.log(`http://localhost:${PORT} 에서 서버 구동 중`);
-    });
   }
+});
+
+let PORT = 8000;
+
+server.listen(PORT, function () {
+  console.log(`http://localhost:${PORT} 에서 서버 구동 중`);
 });

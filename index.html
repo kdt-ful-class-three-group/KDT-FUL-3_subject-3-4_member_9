@@ -21,12 +21,12 @@
 
     <div id="postContainer"></div>
 
-        <div id="modal" class="modal">
+    <div id="modal" class="modal">
       <div id="writeModal" class="writeModal">
         <span class="close" onclick="closeWriteModal()">×</span>
 
         <form action="/writeNewdocument" method="POST">
-          <input type="text" name="title_write" id="title_write">
+          <input type="text" name="title" id="title_write">
           <textarea type="text" name="write" id="write"></textarea>
           <button type="submit">글 등록하기</button>
         </form>
@@ -35,14 +35,24 @@
         글쓰기
       </button>
 
+          <div id="readModal" class="readModal">
+        <span class="close" onclick="closeReadModal()">×</span>
+        <div></div>
+        <!-- 수정모달 여는 버튼 -->
+        <button type="button" onclick="editModal()" class="editBtn">
+          수정하기
+        </button>
 
-    <div id="modal" class="modal_hidden">
+
+    <div id="modal" class="readWriteModal">
+      
       <h4 id="modal_title"></h4>
       <p id="modal_date"></p>
       <p>상세내용</p>
       <button onclick="editModal()">글수정</button>
-      <button onclick="closeModal()">닫기</button>
+      
     </div>
   </body>
-  <script src="/scripts/modal.js"></script>
+<script src="./scripts/modal.js"></script>
+<script src="./scripts/aysnc.js"></script>
 </html>
