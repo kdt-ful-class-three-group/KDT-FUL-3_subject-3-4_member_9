@@ -4,6 +4,8 @@ const fs = require("fs");
 const server = http.createServer(function (req, res) {
   const url = req.url;
 
+  let = dataList = [];
+
   try {
     if (req.method === "GET") {
       console.log(url);
@@ -11,16 +13,44 @@ const server = http.createServer(function (req, res) {
         const main = fs.readFileSync("./index.html", "utf-8");
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
         res.end(main);
+      } else if (url.endsWith(".js")) {
+        res.writeHead(200, { "Content-Type": "text/javascript" });
+        const script = fs.readFileSync(`./${url}`);
+        res.end(script);
+      } else if (url.endsWith(".css")) {
+        res.writeHead(200, { "Content-Type": "text/css" });
+        const css = fs.readFileSync(`./${url}`);
+        res.end(css);
       }
     }
-  } catch {}
-
-  if (req.method === "POST") {
+  } catch {
+    console.error("오류");
   }
+  if (req.method === "POST") {
+    if (url === "/createdDataList") {
+      let list = [];
 
-  let PORT = 8000;
+      req.on("data", (frag) => {
+        list += frag;
+      });
 
-  server.listen(PORT, function () {
-    console.log(`http://localhost:${PORT} 에서 서버 구동 중`);
-  });
+      req.on("end", () => {
+        if (list) {
+          const doc = qs.parse(list);
+          console.log("받은 글", doc);
+
+          dataList.push(doc);
+          console.log("새 글 추가", doc);
+        }
+        res.writeHead(302, { Location: "/" }); // 입력 후 루트로 새로고침
+        res.end();
+      });
+    }
+
+    let PORT = 8000;
+
+    server.listen(PORT, function () {
+      console.log(`http://localhost:${PORT} 에서 서버 구동 중`);
+    });
+  }
 });
