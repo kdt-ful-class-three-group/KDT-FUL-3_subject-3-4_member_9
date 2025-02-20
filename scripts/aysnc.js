@@ -13,9 +13,9 @@ async function newDoc() {
       list.classList.add("post");
       list.setAttribute(
         "style",
-        "border-bottom: 1px solid black; margin-bottom: 10px; padding-bottom: 5px; margin-top: 10px"
+        "border-bottom: 1px solid black; margin-bottom: 10px; padding-bottom: 5px; margin-top: 10px; cursor:pointer"
       );
-      list.innerHTML = `<div onclick="readModal('${item.title}')">${item.title}</div>`;
+      list.innerHTML = `<div onclick="readWriteModal('${item.title}')">${item.title}</div>`;
       doclist.appendChild(list);
     });
   } catch (error) {

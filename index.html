@@ -23,7 +23,7 @@
 
     <div id="modal" class="modal">
       <div id="writeModal" class="writeModal">
-        <span class="close" onclick="closeWriteModal()">×</span>
+        <span class="close" onclick="closeModal()">×</span>
 
         <form action="/writeNewdocument" method="POST">
           <input type="text" name="title" id="title_write">
@@ -35,24 +35,16 @@
         글쓰기
       </button>
 
-          <!-- <div id="readModal" class="readModal">
-        <span class="close" onclick="closeReadModal()">×</span>
-        <div></div> -->
-        <!-- 수정모달 여는 버튼 -->
-        <!-- <button type="button" onclick="editModal()" class="editBtn">
-          수정하기
-        </button> -->
+        
 
 
-    <div id="modal" class="readWriteModal">
-      
-      <h4 id="modal_title"></h4>
-      
-      
+    <div id="readWriteModal" class="readWriteModal">
+      <span class="close" onclick="closeModal()">×</span>
+      <div></div>
+      <div></div>
       <button onclick="editModal()">글수정</button>
-      
     </div>
   </body>
-<script src="./scripts/modal.js"></script>
-<script src="./scripts/aysnc.js"></script>
+  <script src="./scripts/modal.js"></script>
+  <script src="./scripts/aysnc.js"></script>
 </html>
