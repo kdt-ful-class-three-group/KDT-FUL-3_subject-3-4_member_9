@@ -1,5 +1,5 @@
 function editModal(editdata) {
-  const modal = document.getElementById("readModal");
+  const modal = document.getElementById("editModal");
   document.getElementById("edit").value;
   modalContent.textContent = text;
   document.getElementById("editModal").style.display = "block";
