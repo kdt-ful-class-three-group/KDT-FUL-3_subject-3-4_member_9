@@ -4,7 +4,7 @@ const fs = require("fs");
 const server = http.createServer((req, res) => {
   const url = req.url;
 
-  let = docList = [];
+  let docList = [];
 
   try {
     if (req.method === "GET") {
