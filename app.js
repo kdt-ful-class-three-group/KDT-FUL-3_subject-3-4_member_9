@@ -35,7 +35,7 @@ const server = createServer((req, res) => {
       let list = [];
 
       req.on("data", (frag) => {
-        list += frag;
+        list += frag; //배열에 stack하는 용도
       });
 
       req.on("end", () => {

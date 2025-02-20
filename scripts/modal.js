@@ -5,13 +5,19 @@ function editModal(editdata) {
   document.getElementById("editModal").style.display = "block";
 }
 
-function readWriteModal(text) {
+function readWriteModal() {
   const modal = document.getElementById("readWriteModal");
   const modalContent = modal.querySelector("div");
-  modalContent.innerHTML = `<p>${text}</p>`;
+
+  const title = document.getElementById("title").value;
+  const write = document.getElementById("write").value;
+  modalContent.innerHTML = `<h2>${title}<h2>`;
+  modalContent.textContent = title;
+  modalContent.textContent = write;
 
   modal.style.display = "block";
 }
+
 function writeModal() {
   document.getElementById("writeModal").style.display = "block";
 }

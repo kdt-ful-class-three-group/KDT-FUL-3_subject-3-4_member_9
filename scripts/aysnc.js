@@ -15,7 +15,8 @@ async function newDoc() {
         "style",
         "border-bottom: 1px solid black; margin-bottom: 10px; padding-bottom: 5px; margin-top: 10px; cursor:pointer"
       );
-      list.innerHTML = `<div onclick="readWriteModal('${item.title}')">${item.title}</div>`;
+      list.innerHTML = `<div onclick="readWriteModal('${item.title}')">${item.title}
+      </div>`;
       doclist.appendChild(list);
     });
   } catch (error) {
