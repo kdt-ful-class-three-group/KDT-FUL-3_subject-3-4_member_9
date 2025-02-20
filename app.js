@@ -4,7 +4,7 @@ const fs = require("fs");
 const server = http.createServer(function (req, res) {
   const url = req.url;
 
-  let = dataList = [];
+  let = docList = [];
 
   try {
     if (req.method === "GET") {
@@ -21,13 +21,17 @@ const server = http.createServer(function (req, res) {
         res.writeHead(200, { "Content-Type": "text/css" });
         const css = fs.readFileSync(`./${url}`);
         res.end(css);
+      } else if (url === "/docList") {
+        console.log("글 요청");
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(docList));
       }
     }
   } catch {
     console.error("오류");
   }
   if (req.method === "POST") {
-    if (url === "/createdDataList") {
+    if (url === "/writeNewdocument") {
       let list = [];
 
       req.on("data", (frag) => {
@@ -39,7 +43,7 @@ const server = http.createServer(function (req, res) {
           const doc = qs.parse(list);
           console.log("받은 글", doc);
 
-          dataList.push(doc);
+          docList.push(doc);
           console.log("새 글 추가", doc);
         }
         res.writeHead(302, { Location: "/" }); // 입력 후 루트로 새로고침
