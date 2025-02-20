@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog입니다람쥐 ㅋㅋ</title>
+    <link rel="stylesheet" href="/styles/style.css">
+  </head>
+  <body>
+  <header>
+    <nav>
+      <a href="/">홈으로 돌아가기</a>
+
+  </header>
+
+
+    
+    <div class="header" id="header">
+      <a href="/">블로그임</a>
+    </div>
+
+    <div id="postContainer"></div>
+
+        <div id="modal" class="modal">
+      <div id="writeModal" class="writeModal">
+        <span class="close" onclick="closeWriteModal()">×</span>
+
+        <form action="/writeNewdocument" method="POST">
+          <input type="text" name="title_write" id="title_write">
+          <textarea type="text" name="write" id="write"></textarea>
+          <button type="submit">글 등록하기</button>
+        </form>
+      </div>
+      <button type="button" onclick="writeModal()" class="addtionalbtn">
+        글쓰기
+      </button>
+
+
+    <div id="modal" class="modal_hidden">
+      <h4 id="modal_title"></h4>
+      <p id="modal_date"></p>
+      <p>상세내용</p>
+      <button onclick="editModal()">글수정</button>
+      <button onclick="closeModal()">닫기</button>
+    </div>
+  </body>
+  <script src="/scripts/modal.js"></script>
+</html>

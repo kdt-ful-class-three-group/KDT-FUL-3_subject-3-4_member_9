@@ -1,0 +1,76 @@
+.addtionalbtn {
+  margin-top: 20px;
+}
+
+.writeModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 30%; /* Full width */
+  height: 20%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(245, 245, 248); /* Fallback color */
+  box-shadow: #f1f1f1;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.readModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 30%; /* Full width */
+  height: 20%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(224, 224, 226); /* Fallback color */
+  box-shadow: #e1d5d5;
+}
+.editModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 30%; /* Full width */
+  height: 20%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(70, 70, 96); /* Fallback color */
+  box-shadow: #e1d5d5;
+}
+
+.nav {
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid blue;
+  margin-bottom: 3px;
+  width: 100vw;
+  height: 10vh;
+}
+
+.modal {
+  justify-content: center;
+}

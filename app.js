@@ -1,7 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 
-const server = http.createServer(function (req, res) {
+const server = http.createServer((req, res) => {
   const url = req.url;
 
   let = docList = [];
@@ -49,6 +49,8 @@ const server = http.createServer(function (req, res) {
         res.writeHead(302, { Location: "/" }); // 입력 후 루트로 새로고침
         res.end();
       });
+
+      return;
     }
 
     let PORT = 8000;
