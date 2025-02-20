@@ -18,8 +18,13 @@
     <div class="header" id="header">
       <a href="/">블로그임</a>
     </div>
+    <div class="list" id="list">글 목록
 
-    <div id="postContainer"></div>
+
+
+      <div id="postContainer"></div>
+    </div>
+
 
     <div id="modal" class="modal">
       <div id="writeModal" class="writeModal">
@@ -31,10 +36,7 @@
           <button type="submit">글 등록하기</button>
         </form>
       </div>
-      <button type="button" onclick="writeModal()" class="addtionalbtn">
-        글쓰기
-      </button>
-
+  
         
 
 
@@ -44,6 +46,10 @@
       <div></div>
       <button onclick="editModal()">글수정</button>
     </div>
+        <button type="button" onclick="writeModal()" class="addtionalbtn">
+        글쓰기
+      </button>
+
   </body>
   <script src="./scripts/modal.js"></script>
   <script src="./scripts/aysnc.js"></script>
