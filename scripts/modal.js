@@ -1,5 +1,9 @@
 function editModal(editdata) {
   const modal = document.getElementById("readModal");
+  const titleInput = document.getElementById("editTitle");
+  const writeInput = document.getElementById("writeTitle");
+  const saveButton = document.getElementById("saveEdit");
+
   document.getElementById("edit").value;
   modalContent.textContent = text;
   document.getElementById("editModal").style.display = "block";
