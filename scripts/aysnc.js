@@ -1,3 +1,13 @@
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
 async function newDoc() {
   try {
     const res = await fetch("/docList");
@@ -15,8 +25,9 @@ async function newDoc() {
         "style",
         "border-bottom: 1px solid black; margin-bottom: 10px; padding-bottom: 5px; margin-top: 10px; cursor:pointer"
       );
-      list.innerHTML = `<div onclick="readWriteModal('${item.title}')">${item.title}
-      </div>`;
+      list.innerHTML = `<div onclick="readWriteModal('${item.title}')">
+  ${item.title} - ${formatDate(item.Date)}
+</div>`;
       doclist.appendChild(list);
     });
   } catch (error) {

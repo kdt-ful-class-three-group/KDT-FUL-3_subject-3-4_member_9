@@ -4,16 +4,14 @@ function editModal(editdata) {
   modalContent.textContent = text;
   document.getElementById("editModal").style.display = "block";
 }
-
-function readWriteModal() {
+function readWriteModal(title, write) {
   const modal = document.getElementById("readWriteModal");
   const modalContent = modal.querySelector("div");
 
-  const title = document.getElementById("title").value;
-  const write = document.getElementById("write").value;
-  modalContent.innerHTML = `<h2>${title}<h2>`;
-  modalContent.textContent = title;
-  modalContent.textContent = write;
+  modalContent.innerHTML = `
+    <h2>${title}</h2>
+    <p>${write}</p>
+  `;
 
   modal.style.display = "block";
 }
