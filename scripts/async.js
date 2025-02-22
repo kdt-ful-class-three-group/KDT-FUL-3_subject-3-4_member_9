@@ -44,7 +44,7 @@ async function newDoc() {
 
 // 수정모달 보여주기
 async function editPost(event, oldTitle, oldWrite) {
-  event.stopPropagation();
+  event.stopPropagation(); //이벤트 전파를 방지ㅎ
 
   const modal = document.getElementById("editModal");
   const titleInput = document.getElementById("editTitle");
@@ -54,23 +54,35 @@ async function editPost(event, oldTitle, oldWrite) {
   titleInput.value = oldTitle;
   writeInput.value = oldWrite;
 
-  let newTitle = titleInput.value;
-  let newWrite = writeInput.value;
-
-  if (newTitle && newWrite) {
-    await fetch("/editDocument", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `oldTitle=${encodeURIComponent(
-        oldTitle
-      )}&newTitle=${encodeURIComponent(newTitle)}&newWrite=${encodeURIComponent(
-        newWrite
-      )}`
-    });
-    newDoc();
-    modal.style.display = "none";
-  }
+  saveButton.replaceWith(saveButton.cloneNode(true));
+  document.getElementById("saveEdit").addEventListener("click", async () => {
+    const newTitle = titleInput.value;
+    const newWrite = writeInput.value;
+    if (newTitle && newWrite) {
+      try {
+        await fetch("/editDocument", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `oldTitle=${encodeURIComponent(
+            oldTitle
+          )}&newTitle=${encodeURIComponent(
+            newTitle
+          )}&newWrite=${encodeURIComponent(newWrite)}`
+        });
+        newDoc();
+        closeModal();
+      } catch (error) {
+        console.error("수정 오류 제발 고쳐!!");
+      }
+    }
+  });
   modal.style.display = "block";
+}
+
+function closeModal() {
+  document.querySelectorAll(".modal").forEach((modal) => {
+    modal.style.display = "none";
+  });
 }
 
 // async function deletePost(event, title) {
