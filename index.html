@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog입니다람쥐 ㅋㅋ</title>
+    <link rel="stylesheet" href="/styles/style.css">
+  </head>
+  <body>
+  <header>
+    <nav>
+      <a href="/">홈으로 돌아가기</a>
+
+  </header>
+
+
+    
+    <div class="header" id="header">
+      <a href="/">블로그임</a>
+    </div>
+    <div class="list" id="list">글 목록
+
+
+
+      <div id="postContainer"></div>
+    </div>
+
+<!-- 글쓰기 폼 모달 -->
+    <div id="modal" class="modal">
+      <div id="writeModal" class="writeModal">
+        <span class="close" onclick="closeModal()">×</span>
+
+        <form action="/writeNewdocument" method="POST">
+          <input type="text" name="title" id="title">
+          <textarea type="text" name="write" id="write"></textarea>
+          <button type="submit">글 등록하기</button>
+        </form>
+      </div>
+
+
+      
+<!-- 읽고 수정 폼 까지 네비게이션 역할 -->
+
+    <div id="readWriteModal" class="readWriteModal">
+      <span class="close" onclick="closeModal()">×</span>
+      
+      <div></div>
+      <button onclick="editModal()">글수정</button>
+    </div>
+
+
+        <button type="button" onclick="writeModal()" class="addtionalbtn">
+        글쓰기
+      </button>
+
+  </body>
+  <script src="./scripts/modal.js"></script>
+  <script src="./scripts/aysnc.js"></script>
+</html>

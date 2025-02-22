@@ -1,0 +1,148 @@
+/* 초기 모달, 버튼 조정 css */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.modal {
+  align-content: center;
+  justify-content: center;
+}
+.addtionalbtn {
+  margin-top: 20px;
+}
+
+.writeModal {
+  display: none;
+  position: fixed;
+
+  z-index: 1;
+  padding-top: 100px;
+  left: 25%;
+  top: 20%;
+  width: 50vw;
+  height: 20%;
+  overflow: hidden;
+  background-color: rgb(245, 245, 248);
+  box-shadow: #f1f1f1;
+}
+.readWriteModal {
+  display: none;
+  position: fixed;
+  align-items: center;
+
+  z-index: 1;
+  padding-top: 100px;
+  left: 25%;
+  top: 20%;
+  width: 50vw;
+  height: 20%;
+  overflow: hidden;
+  background-color: rgb(245, 245, 248);
+  box-shadow: #f1f1f1;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.readModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 30%;
+  height: 20%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(224, 224, 226); /* Fallback color */
+  box-shadow: #e1d5d5;
+}
+.editModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 30%; /* Full width */
+  height: 20%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(70, 70, 96); /* Fallback color */
+  box-shadow: #e1d5d5;
+}
+
+header {
+  background-color: #343a40;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+header nav a {
+  color: rgb(240, 240, 240);
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.addtionalbtn {
+  display: block;
+  width: 150px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #0428dc;
+  color: #f1f1f1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
