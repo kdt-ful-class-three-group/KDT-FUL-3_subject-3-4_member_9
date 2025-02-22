@@ -37,25 +37,16 @@ const server = createServer((req, res) => {
     });
 
     req.on("end", () => {
-      const data = parse(content);
+      const data = parse(content); //qs 데이터를 객체로 변환
 
       if (url === "/writeNewdocument") {
         console.log("글 요청");
-        let list = [];
+        doc.date = new Date().toISOString(); // 날짜 추가
+        console.log("글 등록", data);
+        docList.push(data);
+        console.log("새 글 추가", docList);
 
-        req.on("data", (frag) => {
-          list += frag; //배열에 stack하는 용도
-        });
-
-        if (list) {
-          const doc = parse(list);
-          doc.date = new Date().toISOString();
-          console.log("받은 글", doc);
-
-          docList.push(doc);
-          console.log("새 글 추가", doc);
-        }
-        res.writeHead(302, { Location: "/" }); // 입력 후 루트로 새로고침
+        res.writeHead(302, { Location: "/" });
         res.end();
       }
     });
@@ -81,17 +72,6 @@ const server = createServer((req, res) => {
 
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ success: true }));
-
-    req.on("data", (chunk) => {
-      data += chunk;
-    });
-
-    req.on("end", () => {
-      const updateDoc = parse(data);
-      const index = docList.findIndex(
-        (doc) => doc.title === updateDoc.oldTitle
-      );
-    });
   }
 });
 
