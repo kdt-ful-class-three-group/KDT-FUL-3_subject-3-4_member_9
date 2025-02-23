@@ -108,7 +108,7 @@ async function deletePost(event, title) {
   if (confirm("정말 삭제하시겠습니까?")) {
     await fetch("/deleteDocument", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }, // 미디어 타입 변환 key=valuef로
       body: `title=${title}`
     });
 
