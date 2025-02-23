@@ -80,26 +80,25 @@ const server = createServer((req, res) => {
         res.writeHead(302, { Location: "/" }); // 수정 하고 루트로 돌아오는 이벤트가 없어서 success: true창이 뜨는 문제 해결
         res.end(JSON.stringify({ success: true }));
       }
+      // 삭제 처리 하는 요청
+      if (url === "/deleteDocument") {
+        console.log("삭제 요청");
+
+        const beforeDel = docList.length;
+        docList = docList.filter((doc) => doc.title !== doc.title);
+        const deleted = beforeDel !== docList.length; //삭제 하고 변경내역 확인
+
+        console.log("삭제 후 글 리스트", docList);
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ success: deleted }));
+      } else {
+        if (!res.headersSent) {
+          res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+          res.end(readFileSync("./404page.html", "utf-8"));
+        }
+      }
     });
-  }
-
-  // 삭제 처리 하는 요청
-  if (url === "/deleteDocument") {
-    console.log("삭제 요청");
-
-    const beforeDel = docList.length;
-    docList = docList.filter((doc) => doc.title !== doc.title);
-    const deleted = beforeDel !== docList.length; //삭제 하고 변경내역 확인
-
-    console.log("삭제 후 글 리스트", docList);
-
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ success: deleted }));
-  } else {
-    if (!res.headersSent) {
-      res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-      res.end(readFileSync("./404page.html", "utf-8"));
-    }
   }
 });
 
