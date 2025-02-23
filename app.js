@@ -48,7 +48,9 @@ const server = createServer((req, res) => {
 
         res.writeHead(302, { Location: "/" });
         res.end();
-      } else if (url === "/editDocument") {
+      }
+
+      if (url === "/editDocument") {
         console.log("수정하기 불러옴");
 
         let newDoc = [];
@@ -64,6 +66,7 @@ const server = createServer((req, res) => {
               date: new Date().toLocaleString()
             };
           }
+          res.writeHead(302, { Location: "/" });
           newDoc.push(doc); // 수정된 doc을 새 배열에 추가하기
         }
 
