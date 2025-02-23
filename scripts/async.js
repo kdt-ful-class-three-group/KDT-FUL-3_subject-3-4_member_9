@@ -1,3 +1,4 @@
+//날짜 변환
 function formatDate(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString("ko-KR", {
@@ -44,7 +45,7 @@ async function newDoc() {
 
 // 수정모달 보여주기
 async function editPost(event, oldTitle, oldWrite) {
-  event.stopPropagation(); //이벤트 전파를 방지ㅎ
+  event.stopPropagation(); //이벤트 전파를 방지(다른이벤트 무시)
 
   const modal = document.getElementById("editModal");
   const titleInput = document.getElementById("editTitle");
@@ -54,6 +55,7 @@ async function editPost(event, oldTitle, oldWrite) {
   titleInput.value = oldTitle;
   writeInput.value = oldWrite;
 
+  //새로운 데이터 대체
   saveButton.replaceWith(saveButton.cloneNode(true));
   document.getElementById("saveEdit").addEventListener("click", async () => {
     const newTitle = titleInput.value;
@@ -85,17 +87,17 @@ function closeModal() {
   });
 }
 
-// async function deletePost(event, title) {
-//   event.stopPropagation();
-//   if (confirm("정말 삭제하시겠습니까?")) {
-//     await fetch("/deleteDocument", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//       body: `title=${title}`
-//     });
+async function deletePost(event, title) {
+  event.stopPropagation();
+  if (confirm("정말 삭제하시겠습니까?")) {
+    await fetch("/deleteDocument", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `title=${title}`
+    });
 
-//     newDoc();
-//   }
-// }
+    newDoc();
+  }
+}
 
 window.onload = newDoc;

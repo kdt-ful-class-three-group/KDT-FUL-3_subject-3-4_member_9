@@ -66,7 +66,6 @@ const server = createServer((req, res) => {
               date: new Date().toLocaleString()
             };
           }
-          res.writeHead(302, { Location: "/" });
           newDoc.push(doc); // 수정된 doc을 새 배열에 추가하기
         }
 

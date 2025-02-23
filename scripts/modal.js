@@ -4,9 +4,29 @@ function editModal(editdata) {
   const writeInput = document.getElementById("writeTitle");
   const saveButton = document.getElementById("saveEdit");
 
-  document.getElementById("edit").value;
-  modalContent.textContent = text;
-  document.getElementById("editModal").style.display = "block";
+  titleInput.value = title;
+  writeInput.value = write;
+
+  saveButton.onclick = async function () {
+    const newTitle = titleInput.value;
+    const newWrite = writeInput.value;
+
+    if (newTitle && newWrite) {
+      await fetch("/editDocument", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `oldTitle=${encodeURIComponent(
+          title
+        )}&newTitle=${encodeURIComponent(
+          newTitle
+        )}&newWrite=${encodeURIComponent(newWrite)}`
+      });
+      newDoc();
+      modal.style.display = "none";
+    }
+  };
+
+  modal.style.display = "block";
 }
 function readWriteModal(title, write) {
   const modal = document.getElementById("readWriteModal");
