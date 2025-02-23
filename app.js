@@ -72,11 +72,7 @@ const server = createServer((req, res) => {
         docList = newDoc;
         console.log("수정된 글", docList);
 
-        res.writeHead(
-          200,
-          { "Content-Type": "application/json" },
-          res.writeHead(302, { Location: "/" })
-        );
+        res.writeHead(302, { Location: "/" }); // 수정 하고 루트로 돌아오는 이벤트가 없어서 success: true창이 뜨는 문제 해결
         res.end(JSON.stringify({ success: true }));
       }
     });
