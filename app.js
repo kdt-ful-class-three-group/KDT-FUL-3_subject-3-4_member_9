@@ -25,8 +25,10 @@ const server = createServer((req, res) => {
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(docList));
       } else {
-        res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-        res.end(readFileSync("./404page.html", "utf-8"));
+        if (!res.headersSent) {
+          res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+          res.end(readFileSync("./404page.html", "utf-8"));
+        }
       }
     }
   } catch {
@@ -94,8 +96,10 @@ const server = createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ success: deleted }));
   } else {
-    res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(readFileSync("./404.html", "utf-8"));
+    if (!res.headersSent) {
+      res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(readFileSync("./404page.html", "utf-8"));
+    }
   }
 });
 
