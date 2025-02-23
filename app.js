@@ -77,6 +77,20 @@ const server = createServer((req, res) => {
       }
     });
   }
+
+  // 삭제 처리 하는 요청
+  if (url === "/deleteDocument") {
+    console.log("삭제 요청");
+
+    const beforeDel = docList.length;
+    docList = docList.filter((doc) => doc.ttile !== data.title);
+    const deleted = beforeDel !== docList.length; //삭제 하고 변경내역 확인
+
+    console.log("삭제 후 글 리스트", docList);
+
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ success: deleted }));
+  }
 });
 
 let PORT = 8000;
