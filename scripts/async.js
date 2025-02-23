@@ -1,3 +1,4 @@
+//날짜 변환
 function formatDate(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString("ko-KR", {
@@ -37,6 +38,22 @@ async function newDoc() {
 
       doclist.appendChild(list);
     });
+
+    // 수정 이벤트
+    document.querySelectorAll(".edit-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        editPost(event, button.dataset.title, button.dataset.write);
+      });
+    });
+
+    // 삭제 이벤트
+    document.querySelectorAll(".delete-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        deletePost(event, button.dataset.title);
+      });
+    });
   } catch (error) {
     console.error("데이터 못 불러옴 ", error);
   }
@@ -44,7 +61,7 @@ async function newDoc() {
 
 // 수정모달 보여주기
 async function editPost(event, oldTitle, oldWrite) {
-  event.stopPropagation();
+  event.stopPropagation(); //이벤트 전파를 방지(다른이벤트 무시)
 
   const modal = document.getElementById("editModal");
   const titleInput = document.getElementById("editTitle");
@@ -54,36 +71,49 @@ async function editPost(event, oldTitle, oldWrite) {
   titleInput.value = oldTitle;
   writeInput.value = oldWrite;
 
-  let newTitle = titleInput.value;
-  let newWrite = writeInput.value;
-
-  if (newTitle && newWrite) {
-    await fetch("/editDocument", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `oldTitle=${encodeURIComponent(
-        oldTitle
-      )}&newTitle=${encodeURIComponent(newTitle)}&newWrite=${encodeURIComponent(
-        newWrite
-      )}`
-    });
-    newDoc();
-    modal.style.display = "none";
-  }
+  //새로운 데이터 대체
+  saveButton.replaceWith(saveButton.cloneNode(true));
+  document.getElementById("saveEdit").addEventListener("click", async () => {
+    const newTitle = titleInput.value;
+    const newWrite = writeInput.value;
+    if (newTitle && newWrite) {
+      try {
+        await fetch("/editDocument", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `oldTitle=${encodeURIComponent(
+            oldTitle
+          )}&newTitle=${encodeURIComponent(
+            newTitle
+          )}&newWrite=${encodeURIComponent(newWrite)}`
+        });
+        newDoc();
+        closeModal();
+      } catch (error) {
+        console.error("수정 오류 제발 고쳐!!");
+      }
+    }
+  });
   modal.style.display = "block";
 }
 
-// async function deletePost(event, title) {
-//   event.stopPropagation();
-//   if (confirm("정말 삭제하시겠습니까?")) {
-//     await fetch("/deleteDocument", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//       body: `title=${title}`
-//     });
+function closeModal() {
+  document.querySelectorAll(".modal").forEach((modal) => {
+    modal.style.display = "none";
+  });
+}
 
-//     newDoc();
-//   }
-// }
+async function deletePost(event, title) {
+  event.stopPropagation();
+  if (confirm("정말 삭제하시겠습니까?")) {
+    await fetch("/deleteDocument", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }, // 미디어 타입 변환 key=valuef로
+      body: `title=${title}`
+    });
+
+    newDoc();
+  }
+}
 
 window.onload = newDoc;

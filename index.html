@@ -37,6 +37,23 @@
         </form>
       </div>
 
+<!-- 수정 모달 -->
+      <div id="editModal" class="modal" style="display: none;">
+
+        <form action="/editDocument" method="POST">
+
+          <div class="modal-content">
+            <h2>글 수정</h2>
+            <label>제목:</label>
+            <input type="text" id="editTitle">
+            <label>내용:</label>
+            <textarea id="editWrite"></textarea>
+            <button id="saveEdit">저장</button>
+            <button onclick="closeModal()">취소</button>
+          </div>
+        </form>
+</div>
+
 
       
 <!-- 읽고 수정 폼 까지 네비게이션 역할 -->
@@ -45,7 +62,7 @@
       <span class="close" onclick="closeModal()">×</span>
       
       <div></div>
-      <button onclick="editModal()">글수정</button>
+    
     </div>
 
 
@@ -55,5 +72,5 @@
 
   </body>
   <script src="./scripts/modal.js"></script>
-  <script src="./scripts/aysnc.js"></script>
+  <script src="./scripts/async.js"></script>
 </html>
