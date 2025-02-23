@@ -72,7 +72,11 @@ const server = createServer((req, res) => {
         docList = newDoc;
         console.log("수정된 글", docList);
 
-        res.writeHead(200, { "Content-Type": "application/json" });
+        res.writeHead(
+          200,
+          { "Content-Type": "application/json" },
+          res.writeHead(302, { Location: "/" })
+        );
         res.end(JSON.stringify({ success: true }));
       }
     });

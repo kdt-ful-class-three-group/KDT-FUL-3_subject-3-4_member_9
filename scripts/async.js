@@ -38,6 +38,22 @@ async function newDoc() {
 
       doclist.appendChild(list);
     });
+
+    // 수정 이벤트
+    document.querySelectorAll(".edit-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        editPost(event, button.dataset.title, button.dataset.write);
+      });
+    });
+
+    // 삭제 이벤트
+    document.querySelectorAll(".delete-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        deletePost(event, button.dataset.title);
+      });
+    });
   } catch (error) {
     console.error("데이터 못 불러옴 ", error);
   }
