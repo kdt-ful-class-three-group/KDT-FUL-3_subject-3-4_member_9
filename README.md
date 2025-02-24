@@ -54,3 +54,10 @@ Content-Type의 다양성을 검색을 통해 접했고 "application/x-www-form-
 URL에서 안전하게 데이터를 전송하기 위해 특수 문자(공백, &, ?, = 등)를 인코딩하는 함수를 찾을 수 있었고 encodeURIComponent()를 사용해 데이터를 전송해봤습니다.
 
 데이터가 Body에 담기는 post 방식에서는 필요가 없다는 것을 알았지만 "application/x-www-form-urlencoded" 방식을 채택해놨기 때문에 서버에서 해석하는 방식을 데이터 보존 방식을 사용했어야 했습니다.
+
+동기: 파일 읽기 (readFileSync): 파일을 동기적으로 읽음\
+ 배열 조작 (map, filter): 동기적으로 실행됨\
+ res.end() 이후 코드 실행되지 않음: 응답을 보낸 후에는 더 이상 코드가 실행되지 않음
+
+비동기: console.log로 현재 위치 확인\
+ fetch()를 이용해 서버에서 응답을 기다린 후 데이터를 받아옴
