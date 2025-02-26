@@ -1,14 +1,6 @@
-//날짜 변환
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-}
+import formatDate from "./clockFormatData.js";
+
+formatDate();
 
 async function newDoc() {
   try {
@@ -118,6 +110,7 @@ async function deletePost(event, title) {
     newDoc();
   }
 }
+window.formatDate = formatDate;
 window.deletePost = deletePost;
 window.editPost = editPost;
 window.onload = newDoc;
