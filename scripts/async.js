@@ -1,5 +1,5 @@
 import formatDate from "./clockFormatData.js";
-
+import { modalElement } from "./modalElement.js";
 formatDate();
 
 async function newDoc() {
@@ -55,11 +55,7 @@ async function newDoc() {
 // 수정모달 보여주기
 async function editPost(event, oldTitle, oldWrite) {
   event.stopPropagation(); //이벤트 전파를 방지(다른이벤트 무시)
-
-  const modal = document.getElementById("editModal");
-  const titleInput = document.getElementById("editTitle");
-  const writeInput = document.getElementById("editWrite");
-  const saveButton = document.getElementById("saveEdit");
+  const { modal, titleInput, writeInput, saveButton } = modalElement();
 
   titleInput.value = oldTitle;
   writeInput.value = oldWrite;
