@@ -81,7 +81,9 @@ async function editPost(event, oldTitle, oldWrite) {
       try {
         await fetch("/editDocument", {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          headers: {
+            "Content-Type": "application/x-www-form-encodeURIComponent"
+          },
           body: `oldTitle=${encodeURIComponent(
             oldTitle
           )}&newTitle=${encodeURIComponent(
