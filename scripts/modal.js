@@ -1,11 +1,10 @@
-function editModal(editdata) {
-  const modal = document.getElementById("readModal");
-  const titleInput = document.getElementById("editTitle");
-  const writeInput = document.getElementById("writeTitle");
-  const saveButton = document.getElementById("saveEdit");
+import { modalElement } from "./modalElement.js";
 
-  titleInput.value = title;
-  writeInput.value = write;
+function editModal(editdata) {
+  const { modal, titleInput, writeInput, saveButton } = modalElement();
+
+  titleInput.value = editdata.title;
+  writeInput.value = editdata.write;
 
   saveButton.onclick = async function () {
     const newTitle = titleInput.value;
@@ -28,6 +27,7 @@ function editModal(editdata) {
 
   modal.style.display = "block";
 }
+
 function readWriteModal(title, write) {
   const modal = document.getElementById("readWriteModal");
   const modalContent = modal.querySelector("div");
@@ -57,3 +57,9 @@ function closeModal() {
     writeModal.style.display = "none";
   }
 }
+
+window.writeModal = writeModal;
+window.readWriteModal = readWriteModal;
+window.closeModal = closeModal;
+window.editModal = editModal;
+export { editModal, readWriteModal, writeModal, closeModal };

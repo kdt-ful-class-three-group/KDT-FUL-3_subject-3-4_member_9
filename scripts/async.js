@@ -9,6 +9,7 @@ function formatDate(dateString) {
     minute: "2-digit"
   });
 }
+
 async function newDoc() {
   try {
     const res = await fetch("/docList");
@@ -115,5 +116,6 @@ async function deletePost(event, title) {
     newDoc();
   }
 }
-
+window.deletePost = deletePost;
+window.editPost = editPost;
 window.onload = newDoc;
