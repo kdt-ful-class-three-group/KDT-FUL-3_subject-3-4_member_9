@@ -4,6 +4,30 @@ import { parse } from "querystring";
 import { express } from "express";
 
 let docList = [];
+
+apa.get("/", function (req, res) {
+  const main = readFileSync("./index.html", "utf-8");
+  res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+  res.end(main);
+});
+
+app.get("/docList", (req, res) => {
+  res.json(docList);
+});
+
+app.post("/writeNewdocument", (req, res) => {
+  console.log("글 요청");
+  const data = req.body;
+  data.date = new Date().toISOString();
+  docList.push(data);
+  console.log("새 글 추가", docList);
+  res.redirect("/");
+});
+
+
+app.post("/editDocument", (req, res) => {
+  console.log("수정 요청");
+
 const server = createServer((req, res) => {
   const url = req.url;
 
