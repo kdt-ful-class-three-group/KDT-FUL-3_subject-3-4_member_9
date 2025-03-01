@@ -1,14 +1,6 @@
-//날짜 변환
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-}
+import formatDate from "./clockFormatData.js";
+import { modalElement } from "./modalElement.js";
+formatDate();
 
 async function newDoc() {
   try {
@@ -63,11 +55,7 @@ async function newDoc() {
 // 수정모달 보여주기
 async function editPost(event, oldTitle, oldWrite) {
   event.stopPropagation(); //이벤트 전파를 방지(다른이벤트 무시)
-
-  const modal = document.getElementById("editModal");
-  const titleInput = document.getElementById("editTitle");
-  const writeInput = document.getElementById("editWrite");
-  const saveButton = document.getElementById("saveEdit");
+  const { modal, titleInput, writeInput, saveButton } = modalElement();
 
   titleInput.value = oldTitle;
   writeInput.value = oldWrite;
@@ -81,7 +69,9 @@ async function editPost(event, oldTitle, oldWrite) {
       try {
         await fetch("/editDocument", {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          headers: {
+            "Content-Type": "application/x-www-form-encodeURIComponent"
+          },
           body: `oldTitle=${encodeURIComponent(
             oldTitle
           )}&newTitle=${encodeURIComponent(
@@ -116,6 +106,7 @@ async function deletePost(event, title) {
     newDoc();
   }
 }
+window.formatDate = formatDate;
 window.deletePost = deletePost;
 window.editPost = editPost;
 window.onload = newDoc;
