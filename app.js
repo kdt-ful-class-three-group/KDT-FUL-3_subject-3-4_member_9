@@ -2,14 +2,14 @@ import { createServer } from "http";
 import { readFileSync } from "fs";
 import { parse } from "querystring";
 import { express } from "express";
-import bodyParser from 'body-parser';
+
 
 const app = express();
 app.use(express.static('./'));
 
 let docList = [];
 
-apa.get("/", function (req, res) {
+app.get("/", function (req, res) {
   const main = readFileSync("./index.html", "utf-8");
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
   res.end(main);
