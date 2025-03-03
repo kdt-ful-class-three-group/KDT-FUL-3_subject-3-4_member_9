@@ -2,9 +2,11 @@ import { createServer } from "http";
 import { readFileSync } from "fs";
 import { parse } from "querystring";
 import { express } from "express";
+import bodyParser from "body-parser";
 
 
 const app = express();
+app.use(express.urlencoded({ extended: true })); // url인코딩
 app.use(express.static('./'));
 
 let docList = [];
