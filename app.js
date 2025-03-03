@@ -2,7 +2,11 @@ import { createServer } from "http";
 import { readFileSync } from "fs";
 import { parse } from "querystring";
 import { express } from "express";
-import bodyPaser from "body-paser";
+
+import bodyParser from "body-parser";
+
+
+
 
 const app = express();
 app.use(express.static("./"));
